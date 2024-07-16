@@ -129,11 +129,11 @@
 
                      // Display edit form if edit_id matches current row's id
                     if(isset($_GET['edit_id']) && $_GET['edit_id'] == $row['id']) {
-                        echo "<form action='' method='POST'>
+                        echo "<form id='editForm-" . $row['id'] . "' action='' method='POST'>
                                 <input type='text' name='new_fname' value='" . $row['fname'] . "'>
                                 <input type='text' name='new_lname' value='" . $row['lname'] . "'>
                                 <input type='submit' name='update' value='Update'>
-                                <a href='javascript:void(0);' onclick='cancelEdit({$row['id']})'>Cancel</a>
+                                <a href='javascript:void(0);' onclick='cancelEdit(" . $row['id'] . ")'>Cancel</a>
                             </form>";
                     }
                 }
@@ -141,15 +141,15 @@
                 echo "0 Data Found";
             }
             ?>
-
-            <script>
-                function cancelEdit(rowId) {
-                    var editForm = document.getElementById('editForm-' + rowId);
-                    if (editForm) {
-                        editForm.style.display = 'none';
-                    }
+        <!-- Hide Form -->
+        <script>
+            function cancelEdit(rowId) {
+                var editForm = document.getElementById('editForm-' + rowId);
+                if (editForm) {
+                    editForm.style.display = 'none';
                 }
-            </script>
+            }
+        </script>
     </div>
 </body>
 </html>
